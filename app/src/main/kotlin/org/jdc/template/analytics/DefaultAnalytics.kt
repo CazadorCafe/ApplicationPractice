@@ -4,10 +4,10 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import co.touchlab.kermit.Logger
+import com.google.firebase.BuildConfig
 import com.google.firebase.analytics.FirebaseAnalytics
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
-import org.jdc.template.BuildConfig
 import kotlin.time.Duration.Companion.hours
 
 /**

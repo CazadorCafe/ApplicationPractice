@@ -2,6 +2,7 @@ package org.jdc.template.model.webservice
 
 import android.app.Application
 import android.os.Build
+import com.google.firebase.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,7 +16,6 @@ import io.ktor.client.plugins.resources.Resources
 import okhttp3.Credentials
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.jdc.template.BuildConfig
 import org.jdc.template.model.webservice.KtorClientDefaults.defaultSetup
 import java.io.UnsupportedEncodingException
 import java.util.concurrent.TimeUnit
@@ -107,7 +107,7 @@ class WebServiceModule {
         const val STANDARD_CLIENT = "STANDARD_CLIENT" // client without auth
         const val AUTHENTICATED_CLIENT = "AUTHENTICATED_CLIENT"
         const val DEFAULT_TIMEOUT_MINUTES = 3
-        private val USER_AGENT: String = BuildConfig.USER_AGENT_APP_NAME + " " + BuildConfig.VERSION_NAME + " / " + "Android " + Build.VERSION.RELEASE + " " +
+        private val USER_AGENT: String = BuildConfig.LIBRARY_PACKAGE_NAME  + " " + BuildConfig.VERSION_NAME + " / " + "Android " + Build.VERSION.RELEASE + " " +
                 Build.VERSION.INCREMENTAL + " / " +
                 Build.MANUFACTURER +
                 " " + Build.MODEL

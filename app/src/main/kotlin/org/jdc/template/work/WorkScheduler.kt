@@ -11,10 +11,10 @@ import androidx.work.OneTimeWorkRequest
 import androidx.work.PeriodicWorkRequest
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
+import com.google.firebase.BuildConfig
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import org.jdc.template.BuildConfig
 import org.jdc.template.SuppressCoverage
 import org.jdc.template.inject.ApplicationScope
 import org.jdc.template.model.repository.SettingsRepository

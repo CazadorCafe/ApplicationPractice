@@ -34,8 +34,8 @@ class IndividualRepositoryTest {
     fun setUp() {
         TestFilesystem.deleteFilesystem()
 
-        val component = DaggerIndividualRepositoryTestComponent.builder().individualRepositoryTestModule(IndividualRepositoryTestModule()).build()
-        component.inject(this)
+//        val component = DaggerIndividualRepositoryTestComponent.builder().individualRepositoryTestModule(IndividualRepositoryTestModule()).build()
+//        component.inject(this)
     }
 
     @Test
