@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:installLocation="auto"
+    >
+
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- Remove Advertising ID (make sure dependency does not add it) -->
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove" />
+
+    <!-- MyApplication -->
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        >
+        <!-- support 18:9 form factors -->
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.1"
+            />
+
+        <!-- Activities -->
+        <activity
+            android:name=".ux.main.MainActivity"
+            android:label="@string/app_launcher_name"
+            android:exported="true"
+            android:theme="@style/AppTheme.Splash"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- Support navigation deep linking -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="android-template" />
+            </intent-filter>
+        </activity>
+
+        <!-- Google Play Services -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version"
+            />
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge"
+            >
+            <meta-data
+                android:name="org.jdc.template.startup.NotificationInitializer"
+                android:value="androidx.startup"
+                />
+            <meta-data
+                android:name="org.jdc.template.startup.LoggingInitializer"
+                android:value="androidx.startup"
+                />
+            <meta-data
+                android:name="org.jdc.template.startup.AppUpgradeInitializer"
+                android:value="androidx.startup"
+                />
+            <meta-data
+                android:name="org.jdc.template.startup.RemoteConfigInitializer"
+                android:value="androidx.startup"
+                />
+        </provider>
+
+        <!-- Disable Advertising ID collection-->
+        <meta-data android:name="google_analytics_adid_collection_enabled" android:value="false" />
+    </application>
+</manifest>
