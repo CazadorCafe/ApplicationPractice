@@ -63,7 +63,6 @@ class IndividualRepository
     suspend fun saveNewHousehold(household: Household, individuals: List<Individual>) {
         mainDatabase().withTransaction {
             saveHousehold(household)
-
             individuals.forEach { individual ->
                 saveIndividual(individual.copy(householdId = household.id))
             }
@@ -111,6 +110,9 @@ private fun Individual.toEntity(): IndividualEntity {
         phone = phone,
         email = email,
         available = available,
+        profilePicture = profilePicture,
+        forceSensitive = forceSensitive,
+        affiliation = affiliation,
 
         created = lastModified.value,
         lastModified = lastModified.value,
@@ -129,6 +131,9 @@ private fun IndividualEntity.toIndividual(): Individual {
         phone = phone,
         email = email,
         available = available,
+        profilePicture = profilePicture,
+        affiliation = affiliation,
+
         created = CreatedTime(created),
         lastModified = LastModifiedTime(lastModified)
     )

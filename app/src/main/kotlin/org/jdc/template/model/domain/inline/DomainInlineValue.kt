@@ -35,3 +35,10 @@ value class CreatedTime(val value: Instant)
 
 @JvmInline
 value class LastModifiedTime(val value: Instant)
+
+@JvmInline
+value class ProfilePicture(val value: String)
+
+@JvmInline
+value class Affiliation(val value: String)
+

@@ -15,6 +15,7 @@ import okio.Path.Companion.toOkioPath
 import org.jdc.template.domain.individual.CreateIndividualLargeTestDataUseCase
 import org.jdc.template.domain.individual.CreateIndividualTestDataUseCase
 import org.jdc.template.model.config.RemoteConfig
+import org.jdc.template.model.domain.Individual
 import org.jdc.template.model.domain.inline.FirstName
 import org.jdc.template.model.repository.IndividualRepository
 import org.jdc.template.model.webservice.colors.ColorService
@@ -79,8 +80,8 @@ class AboutViewModel
 
     private fun testFullUrlQueryWebServiceCall() = viewModelScope.launch {
         Logger.i { "Full URL Call..." }
-        val response = colorService.getColorsByFullUrl()
-        processWebServiceResponse(response)
+        val response = colorService.getColorsByFullUrl2()
+        processWebServiceResponse4(response)
     }
 
     private fun testSaveQueryWebServiceCall() = viewModelScope.launch {
@@ -95,6 +96,18 @@ class AboutViewModel
             data.colors.forEach {
                 Logger.i { "Result: ${it.colorName}" }
             }
+        }.onFailure {
+            Logger.e { "Web Service FAILURE ${message()}" }
+        }.onError {
+
+        }.onException {
+
+        }
+    }
+    private fun processWebServiceResponse4(response: ApiResponse<out List<Individual>, out Unit>) {
+        response.onSuccess {
+                Logger.i { "Result: $data" }
+
         }.onFailure {
             Logger.e { "Web Service FAILURE ${message()}" }
         }.onError {

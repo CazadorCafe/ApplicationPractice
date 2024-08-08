@@ -7,6 +7,8 @@ import org.dbtools.android.room.CloseableDatabaseWrapper
 import org.dbtools.android.room.android.AndroidSQLiteOpenHelperFactory
 import org.jdc.template.model.db.main.migration.MainMigration2
 import org.jdc.template.model.db.main.migration.MainMigration3
+import org.jdc.template.model.db.main.migration.MainMigration4
+import org.jdc.template.model.db.main.migration.MainMigration5
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -23,7 +25,9 @@ open class MainDatabaseWrapper
             .openHelperFactory(openHelperFactory)
             .addMigrations(
                 MainMigration2(),
-                MainMigration3()
+                MainMigration3(),
+                MainMigration4(),
+                MainMigration5()
             )
             // Debug -- Show SQL statements
             // .setLoggingQueryCallback(MainDatabase.DATABASE_NAME)

@@ -7,9 +7,11 @@ import kotlinx.datetime.LocalTime
 import org.jdc.template.inject.DefaultDispatcher
 import org.jdc.template.model.domain.Household
 import org.jdc.template.model.domain.Individual
+import org.jdc.template.model.domain.inline.Affiliation
 import org.jdc.template.model.domain.inline.FirstName
 import org.jdc.template.model.domain.inline.LastName
 import org.jdc.template.model.domain.inline.Phone
+import org.jdc.template.model.domain.inline.ProfilePicture
 import org.jdc.template.model.domain.type.IndividualType
 import org.jdc.template.model.repository.IndividualRepository
 import javax.inject.Inject
@@ -61,7 +63,117 @@ class CreateIndividualTestDataUseCase
             alarmTime = LocalTime(6, 0),
         )
 
+        val household3 = Household(
+            name = LastName("Skywalker")
+        )
+
+        val individual3 = Individual(
+            householdId = household3.id,
+            firstName = FirstName("Luke"),
+            lastName = LastName("Skywalker"),
+            birthDate = LocalDate(1963, 5,5),
+            profilePicture = ProfilePicture("https://edge.ldscdn.org/mobile/interview/07.png"),
+            forceSensitive = true,
+            affiliation = Affiliation("RESISTANCE")
+        )
+
+        val household4 = Household(
+            name = LastName("Organa Solo")
+        )
+
+        val individual4 = Individual(
+            householdId = household3.id,
+            firstName = FirstName("Leia"),
+            lastName = LastName("Organa"),
+            birthDate = LocalDate(1963, 5,5),
+            profilePicture = ProfilePicture("https://edge.ldscdn.org/mobile/interview/06.png"),
+            forceSensitive = true,
+            affiliation = Affiliation("RESISTANCE")
+        )
+
+        val individual4a = Individual(
+            householdId = household3.id,
+            firstName = FirstName("Han"),
+            lastName = LastName("Solo"),
+            birthDate = LocalDate(1956, 8,22),
+            profilePicture = ProfilePicture("https://edge.ldscdn.org/mobile/interview/04.png"),
+            forceSensitive = false,
+            affiliation = Affiliation("RESISTANCE")
+        )
+
+        val individual4b = Individual(
+            householdId = household3.id,
+            firstName = FirstName("Kylo"),
+            lastName = LastName("Ren"),
+            birthDate = LocalDate(1987, 10,31),
+            profilePicture = ProfilePicture("https://edge.ldscdn.org/mobile/interview/05.jpg"),
+            forceSensitive = true,
+            affiliation = Affiliation("FIRST_ORDER")
+        )
+
+        val household5 = Household(
+            name = LastName("Chewie")
+        )
+
+        val individual5 = Individual(
+            householdId = household3.id,
+            firstName = FirstName("Chewbacca"),
+            lastName = LastName(""),
+            birthDate = LocalDate(1782, 11,15),
+            profilePicture = ProfilePicture("https://edge.ldscdn.org/mobile/interview/01.png"),
+            forceSensitive = false,
+            affiliation = Affiliation("RESISTANCE")
+        )
+
+        val household6 = Household(
+            name = LastName("Snoke")
+        )
+
+        val individual6 = Individual(
+            householdId = household3.id,
+            firstName = FirstName("Supreme Leader"),
+            lastName = LastName("Snoke"),
+            birthDate = LocalDate(1947, 1,1),
+            profilePicture = ProfilePicture("https://edge.ldscdn.org/mobile/interview/08.jpg"),
+            forceSensitive = true,
+            affiliation = Affiliation("FIRST_ORDER")
+        )
+
+        val household7 = Household(
+            name = LastName("Hux")
+        )
+
+        val individual7 = Individual(
+            householdId = household3.id,
+            firstName = FirstName("General"),
+            lastName = LastName("Hux"),
+            birthDate = LocalDate(1982, 7,4),
+            profilePicture = ProfilePicture("https://edge.ldscdn.org/mobile/interview/03.png"),
+            forceSensitive = false,
+            affiliation = Affiliation("FIRST_ORDER")
+        )
+
+        val household8 = Household(
+            name = LastName("Vader")
+        )
+
+        val individual8 = Individual(
+            householdId = household3.id,
+            firstName = FirstName("Darth"),
+            lastName = LastName("Vader"),
+            birthDate = LocalDate(1947, 7,13),
+            profilePicture = ProfilePicture("https://edge.ldscdn.org/mobile/interview/02.jpg"),
+            forceSensitive = false,
+            affiliation = Affiliation("SITH")
+        )
+
         individualRepository.saveNewHousehold(household1, listOf(individual1, individual1a))
         individualRepository.saveNewHousehold(household2, listOf(individual2))
+        individualRepository.saveNewHousehold(household4, listOf(individual4, individual4a, individual4b))
+        individualRepository.saveNewHousehold(household5, listOf(individual5))
+        individualRepository.saveNewHousehold(household6, listOf(individual6))
+        individualRepository.saveNewHousehold(household7, listOf(individual7))
+        individualRepository.saveNewHousehold(household8, listOf(individual8))
+
     }
 }

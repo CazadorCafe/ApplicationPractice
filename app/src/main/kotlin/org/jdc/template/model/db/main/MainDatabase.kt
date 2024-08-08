@@ -20,7 +20,7 @@ import org.jdc.template.model.db.main.individual.IndividualEntity
     views = [
         DirectoryItemEntityView::class
     ],
-    version = 3
+    version = 5
 )
 @TypeConverters(KotlinDateTimeTextConverter::class)
 abstract class MainDatabase : RoomDatabase() {

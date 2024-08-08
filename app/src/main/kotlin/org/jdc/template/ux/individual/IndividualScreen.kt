@@ -1,8 +1,15 @@
 package org.jdc.template.ux.individual
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Delete
@@ -11,13 +18,16 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
+import coil.compose.rememberImagePainter
 import org.jdc.template.R
 import org.jdc.template.model.domain.Individual
 import org.jdc.template.model.domain.inline.Email
@@ -44,8 +54,12 @@ fun IndividualScreen(
     val uiState = viewModel.uiState
 
     val appBarMenuItems = listOf(
-        AppBarMenuItem.Icon(Icons.Outlined.Edit, { stringResource(R.string.edit) }) { uiState.onEditClick() },
-        AppBarMenuItem.Icon(Icons.Outlined.Delete, { stringResource(R.string.delete) }) { uiState.onDeleteClick() }
+        AppBarMenuItem.Icon(
+            Icons.Outlined.Edit,
+            { stringResource(R.string.edit) }) { uiState.onEditClick() },
+        AppBarMenuItem.Icon(
+            Icons.Outlined.Delete,
+            { stringResource(R.string.delete) }) { uiState.onDeleteClick() }
     )
 
     MainAppScaffoldWithNavBar(
@@ -74,11 +88,49 @@ private fun IndividualSummary(individual: Individual) {
             .verticalScroll(rememberScrollState())
             .padding(start = 16.dp)
     ) {
-        TextWithTitle(individual.getFullName(), textStyle = MaterialTheme.typography.headlineSmall)
-        TextWithTitle(individual.phone?.value, stringResource(R.string.phone))
-        TextWithTitle(individual.email?.value, stringResource(R.string.email))
-        TextWithTitle(DateUiUtil.getLocalDateText(LocalContext.current, individual.birthDate), stringResource(R.string.birth_date))
-        TextWithTitle(DateUiUtil.getLocalTimeText(LocalContext.current, individual.alarmTime), stringResource(R.string.alarm_time))
+        if (individual.profilePicture?.value != null) {
+            Row(
+                modifier = Modifier.fillMaxSize(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Image(
+                    painter = rememberImagePainter(individual.profilePicture?.value),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .size(120.dp)
+                        .clip(CircleShape)
+                        .background(MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f))
+                )
+            }
+            TextWithTitle(
+                individual.getFullName(),
+                textStyle = MaterialTheme.typography.headlineSmall
+            )
+            TextWithTitle(
+                DateUiUtil.getLocalDateText(LocalContext.current, individual.birthDate),
+                stringResource(R.string.birth_date)
+            )
+            TextWithTitle(
+                individual.affiliation?.value,
+                stringResource(R.string.affiliation)
+            )
+        } else {
+            TextWithTitle(
+                individual.getFullName(),
+                textStyle = MaterialTheme.typography.headlineSmall
+            )
+            TextWithTitle(individual.phone?.value, stringResource(R.string.phone))
+            TextWithTitle(individual.email?.value, stringResource(R.string.email))
+            TextWithTitle(
+                DateUiUtil.getLocalDateText(LocalContext.current, individual.birthDate),
+                stringResource(R.string.birth_date)
+            )
+            TextWithTitle(
+                DateUiUtil.getLocalTimeText(LocalContext.current, individual.alarmTime),
+                stringResource(R.string.alarm_time)
+            )
+        }
     }
 }
 

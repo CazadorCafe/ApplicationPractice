@@ -47,6 +47,7 @@
     <string name="phone">Phone</string>
     <string name="email">Email</string>
     <string name="birth_date">Birth Date</string>
+    <string name="affiliation">Affiliation</string>
     <string name="alarm_time">Alarm Time</string>
 
     <string name="notification_channel_general">General Notifications</string>

@@ -304,6 +304,11 @@ dependencies {
     testImplementation(libs.dbtools.roomJdbc)
     testImplementation(libs.turbine)
     testImplementation(libs.xerial.sqlite)
+
+
+
+    implementation ("io.coil-kt:coil-compose:2.1.0")
+
 }
 
 // ===== TEST TASKS =====

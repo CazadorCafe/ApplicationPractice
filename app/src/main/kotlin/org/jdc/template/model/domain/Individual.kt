@@ -3,6 +3,7 @@ package org.jdc.template.model.domain
 import kotlinx.datetime.Clock
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalTime
+import org.jdc.template.model.domain.inline.Affiliation
 import org.jdc.template.model.domain.inline.CreatedTime
 import org.jdc.template.model.domain.inline.Email
 import org.jdc.template.model.domain.inline.FirstName
@@ -11,6 +12,7 @@ import org.jdc.template.model.domain.inline.IndividualId
 import org.jdc.template.model.domain.inline.LastModifiedTime
 import org.jdc.template.model.domain.inline.LastName
 import org.jdc.template.model.domain.inline.Phone
+import org.jdc.template.model.domain.inline.ProfilePicture
 import org.jdc.template.model.domain.type.IndividualType
 import java.util.UUID
 
@@ -26,6 +28,9 @@ data class Individual(
     val phone: Phone? = null,
     val email: Email? = null,
     val available: Boolean = false,
+    val profilePicture: ProfilePicture? = null,
+    val forceSensitive: Boolean = false,
+    val affiliation: Affiliation? = null,
 
     val created: CreatedTime = CreatedTime(Clock.System.now()),
     val lastModified: LastModifiedTime = LastModifiedTime(Clock.System.now())

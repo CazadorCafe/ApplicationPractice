@@ -1,8 +1,8 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 3,
-    "identityHash": "1d074b11affe8baa3795fefcca84b7cc",
+    "version": 5,
+    "identityHash": "1ddf9741330d1af0d80df6cfb1781398",
     "entities": [
       {
         "tableName": "Individual",
@@ -150,12 +150,12 @@
     "views": [
       {
         "viewName": "DirectoryItem",
-        "createSql": "CREATE VIEW `${VIEW_NAME}` AS SELECT id AS individualId, lastName, firstName FROM Individual"
+        "createSql": "CREATE VIEW `${VIEW_NAME}` AS SELECT id AS individualId, lastName, firstName, profilePicture FROM Individual"
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1d074b11affe8baa3795fefcca84b7cc')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1ddf9741330d1af0d80df6cfb1781398')"
     ]
   }
 }
