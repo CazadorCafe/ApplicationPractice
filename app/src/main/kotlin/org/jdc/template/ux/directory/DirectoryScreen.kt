@@ -99,12 +99,11 @@ private fun DirectoryContent(
     val configuration = LocalConfiguration.current
     val screenWidthDp = configuration.screenWidthDp
 
-    // Define a threshold for tablet vs phone
     val isTablet = screenWidthDp >= 600
 
     if (isTablet) {
         LazyVerticalGrid(
-            columns = GridCells.Fixed(2), // Adjust the number of columns for phones
+            columns = GridCells.Fixed(2),
             contentPadding = PaddingValues(8.dp),
             modifier = Modifier.fillMaxSize()
         ) {
@@ -179,7 +178,7 @@ fun GridItem(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally, // Center horizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
             if (hasProfilePicture) {

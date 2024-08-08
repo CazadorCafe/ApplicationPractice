@@ -58,7 +58,7 @@ class TestIndividuals {
 
     val directoryItems: List<DirectoryItemEntityView>
         get() {
-            return individuals.map { DirectoryItemEntityView(it.id, it.firstName, it.lastName) }
+            return individuals.map { DirectoryItemEntityView(it.id, it.firstName, it.lastName, null) }
         }
 
     companion object {

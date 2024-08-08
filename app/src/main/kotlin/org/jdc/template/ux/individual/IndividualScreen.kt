@@ -95,7 +95,7 @@ private fun IndividualSummary(individual: Individual) {
                 horizontalArrangement = Arrangement.Center
             ) {
                 Image(
-                    painter = rememberImagePainter(individual.profilePicture?.value),
+                    painter = rememberImagePainter(individual.profilePicture.value),
                     contentDescription = null,
                     modifier = Modifier
                         .size(120.dp)
